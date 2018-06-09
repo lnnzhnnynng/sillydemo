@@ -16,12 +16,35 @@ var app = {
 };
 
 //INSERT ACCELEROMETER HERE
+try {
+    let sensor = new LinearAccelerationSensor({ frequency: 60 });
+    sensor.start();
+
+    sensor.onreading = () => {
+        var event = new CustomEvent('devicemotion', {
+            detail: {
+                acceleration: {
+                    x: sensor.x,
+                    y: sensor.y,
+                    z: sensor.z
+                }
+            }
+        });
+        window.dispatchEvent(event);
+    }
+    sensor.onerror = event => console.log(event.error.name, event.error.message);
+}
+catch (e) {
+    console.log(e);
+    app.usingGenericSensor = false;
+}
 
 
 
-/*
+
 if (window.DeviceMotionEvent || 'LinearAccelerationSensor' in window) {
     //DD AN EVENT LISTENER TO WINDOW
+    window.addEventListener('devicemotion', deviceMotionHandler, false);
     
 }
 else {
@@ -80,6 +103,9 @@ function deviceMotionHandler(eventData) {
         if (Math.abs(mAcc.x) > shakyThreshold || Math.abs(mAcc.y) > shakyThreshold || Math.abs(mAcc.z) > shakyThreshold) {
             app.busy = true;
             //DO SILLY STUFF
+            var scream = new Audio(randomPicker(app.audio));
+            scream.play();
+            sleep(2000);v
 
             app.busy = false;
         }
@@ -102,7 +128,7 @@ function sleep(milliseconds) {
             break;
         }
     }
-}*/
+}
 
 function randomPicker(array) {
     let i = Math.floor(Math.random() * array.length);
