@@ -1,5 +1,5 @@
 // define global var here
-/*var app = {
+var app = {
     usingGenericSensor: true,
     max: {
         x: 0,
@@ -19,7 +19,7 @@
 
 
 
-
+/*
 if (window.DeviceMotionEvent || 'LinearAccelerationSensor' in window) {
     //DD AN EVENT LISTENER TO WINDOW
     
