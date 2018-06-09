@@ -1,5 +1,5 @@
 // define global var here
-var app = {
+/*var app = {
     usingGenericSensor: true,
     max: {
         x: 0,
@@ -15,13 +15,13 @@ var app = {
     ]
 };
 
-/*INSERT ACCELEROMETER HERE*/
+//INSERT ACCELEROMETER HERE
 
 
 
 
 if (window.DeviceMotionEvent || 'LinearAccelerationSensor' in window) {
-    /*ADD AN EVENT LISTENER TO WINDOW*/
+    //DD AN EVENT LISTENER TO WINDOW
     
 }
 else {
@@ -79,14 +79,14 @@ function deviceMotionHandler(eventData) {
     if (!app.busy) {
         if (Math.abs(mAcc.x) > shakyThreshold || Math.abs(mAcc.y) > shakyThreshold || Math.abs(mAcc.z) > shakyThreshold) {
             app.busy = true;
-            /*DO SILLY STUFF*/
+            //DO SILLY STUFF
 
             app.busy = false;
         }
     }
 }
 
-/*UTILS*/
+//UTILS
 
 function updateMaxValue(val, field) {
     if (Math.abs(val) > Math.abs(field)) {
@@ -102,7 +102,7 @@ function sleep(milliseconds) {
             break;
         }
     }
-}
+}*/
 
 function randomPicker(array) {
     let i = Math.floor(Math.random() * array.length);
@@ -110,4 +110,7 @@ function randomPicker(array) {
 }
 
 /* INSERT SCREAM FOR BUTTON CLICK FUNCTION HERE*/ 
-
+function scream() {
+    var scream = new Audio(randomPicker(app.audio));
+    scream.play();
+}
